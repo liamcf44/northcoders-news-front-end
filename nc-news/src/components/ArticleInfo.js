@@ -7,9 +7,9 @@ class ArticleInfo extends Component {
     articleComments: {}
   };
 
-  componentDidUpdate = async prevProps => {
+  componentDidUpdate = async (prevProps, prevState) => {
     let { selectedArticle } = this.props;
-    if (prevProps !== this.props) {
+    if (prevProps !== this.props || prevState !== this.state) {
       const articleData = await this.fetchIndividualArticleData(
         selectedArticle
       );
@@ -24,7 +24,6 @@ class ArticleInfo extends Component {
   render() {
     const { result: articleResult } = this.state.selectedArticle;
     const { comments: commentResult } = this.state.articleComments;
-    console.log(commentResult);
     if (!articleResult) return <p>Please select an article or a user</p>;
     else {
       return (
@@ -40,12 +39,19 @@ class ArticleInfo extends Component {
             {commentResult.map(comment => {
               return (
                 <div key={comment._id}>
-                  <p>{comment.created_by.username}:</p>
+                  <h5>{comment.created_by.username}:</h5>
                   <p>{comment.body}</p>
-                  <p>
-                    Votes: {comment.votes} Created at:{comment.created_at}
-                  </p>
-                  <br />
+                  <p>Votes: {comment.votes}</p>
+                  <span>
+                    <i
+                      className="far fa-arrow-alt-circle-up"
+                      onClick={() => this.handleVotes(comment._id, 'up')}
+                    />
+                    <i
+                      className="far fa-arrow-alt-circle-down"
+                      onClick={() => this.handleVotes(comment._id, 'down')}
+                    />
+                  </span>
                 </div>
               );
             })}
@@ -69,6 +75,14 @@ class ArticleInfo extends Component {
       )
       .catch(err => console.log(err));
     return data;
+  };
+
+  handleVotes = (id, direction) => {
+    axios
+      .put(
+        `https://liamcf44-northcoders-news.herokuapp.com/api/comments/${id}?vote=${direction}`
+      )
+      .catch(err => console.log(err));
   };
 }
 

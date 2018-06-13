@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ArticleInfo from './ArticleInfo';
 
 class Articles extends Component {

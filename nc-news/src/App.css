@@ -22,6 +22,11 @@ li a {
   text-decoration: none;
 }
 
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+
 #title {
   float: right;
   display: block;
@@ -31,8 +36,31 @@ li a {
   font-size: 2em;
 }
 
+#title:hover {
+  color: whitesmoke;
+  background-color: maroon;
+}
+
 .articleTitles {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
+}
+
+.articleList {
+  width: 40%;
+}
+
+.articleList h3,
+.articleContent h4 {
+  font-size: 1.6em;
+  color: maroon;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.articleInfo h4 {
+  font-size: 1.4em;
+  color: maroon;
+  font-weight: 500;
 }
