@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import AddComment from './AddComment';
 
 class ArticleInfo extends Component {
   state = {
@@ -55,6 +56,11 @@ class ArticleInfo extends Component {
                 </div>
               );
             })}
+            <br />
+            <AddComment
+              articleId={articleResult[0]._id}
+              userDetails={this.props.userDetails}
+            />
           </div>
         </section>
       );

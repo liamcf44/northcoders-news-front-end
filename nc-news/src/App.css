@@ -47,6 +47,10 @@ li a:hover {
   justify-content: space-between;
 }
 
+.articleInfo {
+  max-width: 65%;
+}
+
 .articleList {
   width: 40%;
 }

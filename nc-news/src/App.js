@@ -10,7 +10,11 @@ import HomePage from './components/HomePage';
 class App extends Component {
   state = {
     selectedArticle: '',
-    selectedUser: ''
+    selectedUser: '',
+    user: {
+      _id: '5af568397e27165f2c6c2020',
+      username: 'jessjelly'
+    }
   };
 
   render() {
@@ -30,13 +34,14 @@ class App extends Component {
                 handleClick={this.handleClick}
                 selectedArticle={this.state.selectedArticle}
                 selectedUser={this.state.selectedUser}
+                userDetails={this.state.user}
               />
             )}
           />
           <Route
             exact
             path="/addArticle"
-            render={props => <AddArticle {...props} />}
+            render={props => <AddArticle {...props} user={this.state.user} />}
           />
         </div>
       </div>

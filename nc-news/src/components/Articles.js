@@ -62,6 +62,7 @@ class Articles extends Component {
           <ArticleInfo
             selectedArticle={this.props.selectedArticle}
             selectedUser={this.props.selectedUser}
+            userDetails={this.props.userDetails}
           />
         </section>
       );
