@@ -26,14 +26,16 @@ class App extends Component {
               <Articles {...props} handleClick={this.handleClick} />
             )}
           />
-          <ArticleInfo />
+          <ArticleInfo
+            selectedArticle={this.state.selectedArticle}
+            selectedUser={this.state.selectedUser}
+          />
         </div>
       </div>
     );
   }
 
   handleClick = ({ target }) => {
-    console.log(target);
     this.setState({
       [target.name]: target.id
     });
