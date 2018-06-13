@@ -28,4 +28,11 @@ li a {
   color: maroon;
   text-align: center;
   padding: 14px 16px;
+  font-size: 2em;
+}
+
+.container {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
 }

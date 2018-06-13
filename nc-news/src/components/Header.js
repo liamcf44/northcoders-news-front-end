@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Route, Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
   state = {
-    topics: []
+    topics: {}
   };
 
   componentDidMount = async () => {
@@ -23,16 +23,16 @@ class Header extends Component {
         <section className="header">
           <ul className="navBar">
             <li>
-              <Link to="/" key="home" className="navLink">
+              <NavLink to="/" key="home" className="navLink">
                 Home
-              </Link>
+              </NavLink>
             </li>
             {topics.map(topic => {
               return (
                 <li key={topic.slug}>
-                  <Link to={topic.slug} className="navLink">
+                  <NavLink to={topic.slug} className="navLink">
                     {topic.title}
-                  </Link>
+                  </NavLink>
                 </li>
               );
             })}

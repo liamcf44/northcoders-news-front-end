@@ -14,8 +14,10 @@ class App extends Component {
         <br />
         <br />
         <br />
-        <Route path="/" render={props => <Articles {...props} />} />
-        <ArticleInfo />
+        <div className="container">
+          <Route path="/" render={props => <Articles {...props} />} />
+          <ArticleInfo />
+        </div>
       </div>
     );
   }
