@@ -17,8 +17,7 @@ class Articles extends Component {
   render() {
     let pathname = this.props.location.pathname;
     let { articles } = this.state.articles;
-    console.log(articles, '*********************');
-    console.log(pathname.substring(1), '~~~~~~~~~~~~~~~~~~~~~~~~');
+    let { handleClick } = this.props;
 
     if (!articles || pathname === '/') {
       return (
@@ -37,8 +36,22 @@ class Articles extends Component {
             )
               return (
                 <div key={article._id} className="articleListItem">
-                  <p>{article.title}</p>
-                  <p>created by: {article.created_by.username}</p>
+                  <a
+                    onClick={handleClick}
+                    id={article._id}
+                    name="selectedArticle"
+                  >
+                    {article.title}
+                  </a>
+                  <br />
+                  <a
+                    onClick={handleClick}
+                    id={article.created_by.username}
+                    name="selectedUser"
+                  >
+                    created by: {article.created_by.username}
+                  </a>
+                  <br />
                   <br />
                 </div>
               );
