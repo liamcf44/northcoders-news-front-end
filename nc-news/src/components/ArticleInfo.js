@@ -24,6 +24,7 @@ class ArticleInfo extends Component {
 
   render() {
     const { result: articleResult } = this.state.selectedArticle;
+    console.log(articleResult);
     const { comments: commentResult } = this.state.articleComments;
     if (!articleResult) return <p>Please select an article or a user</p>;
     else {
@@ -32,10 +33,25 @@ class ArticleInfo extends Component {
           <div className="articleContent">
             <h4>{articleResult[0].title}</h4>
             <h5>Created by: {articleResult[0].created_by.username}</h5>
+            <p>Votes: {articleResult[0].votes}</p>
+            <span>
+              <i
+                className="far fa-arrow-alt-circle-up"
+                onClick={() =>
+                  this.handleVotes('article', articleResult[0]._id, 'up')
+                }
+              />
+              <i
+                className="far fa-arrow-alt-circle-down"
+                onClick={() =>
+                  this.handleVotes('article', articleResult[0]._id, 'down')
+                }
+              />
+            </span>
             <p>{articleResult[0].body}</p>
           </div>
           <br />
-          <h4>Comments</h4>
+          <h4>{commentResult.length} Comments</h4>
           <div className="commentContent">
             {commentResult.map(comment => {
               return (
@@ -46,11 +62,15 @@ class ArticleInfo extends Component {
                   <span>
                     <i
                       className="far fa-arrow-alt-circle-up"
-                      onClick={() => this.handleVotes(comment._id, 'up')}
+                      onClick={() =>
+                        this.handleVotes('comment', comment._id, 'up')
+                      }
                     />
                     <i
                       className="far fa-arrow-alt-circle-down"
-                      onClick={() => this.handleVotes(comment._id, 'down')}
+                      onClick={() =>
+                        this.handleVotes('comment', comment._id, 'down')
+                      }
                     />
                   </span>
                 </div>
@@ -83,12 +103,20 @@ class ArticleInfo extends Component {
     return data;
   };
 
-  handleVotes = (id, direction) => {
-    axios
-      .put(
-        `https://liamcf44-northcoders-news.herokuapp.com/api/comments/${id}?vote=${direction}`
-      )
-      .catch(err => console.log(err));
+  handleVotes = (space, id, direction) => {
+    if (space === 'comment') {
+      axios
+        .put(
+          `https://liamcf44-northcoders-news.herokuapp.com/api/comments/${id}?vote=${direction}`
+        )
+        .catch(err => console.log(err));
+    } else if (space === 'article') {
+      axios
+        .put(
+          `https://liamcf44-northcoders-news.herokuapp.com/api/articles/${id}?vote=${direction}`
+        )
+        .catch(err => console.log(err));
+    }
   };
 }
 

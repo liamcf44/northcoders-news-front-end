@@ -9,7 +9,11 @@ class AddComment extends Component {
   render() {
     return (
       <div>
-        <input placeholder="Add a comment here" onChange={this.handleInput} />
+        <input
+          placeholder="Add a comment here"
+          value={this.state.commentBody}
+          onChange={this.handleInput}
+        />
         <button onClick={this.postComment}>Add comment</button>
       </div>
     );
@@ -34,6 +38,9 @@ class AddComment extends Component {
         }
       )
       .then(function(response) {
+        this.setState({
+          commentBody: ''
+        });
         console.log(response);
       })
       .catch(function(error) {
