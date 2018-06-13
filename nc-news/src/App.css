@@ -31,7 +31,7 @@ li a {
   font-size: 2em;
 }
 
-.container {
+.articleTitles {
   display: flex;
   flex-flow: row;
   justify-content: space-between;

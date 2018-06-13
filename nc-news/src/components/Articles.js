@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import { Link, Route } from 'react-router-dom';
+import ArticleInfo from './ArticleInfo';
 
 class Articles extends Component {
   state = {
@@ -19,43 +20,49 @@ class Articles extends Component {
     let { articles } = this.state.articles;
     let { handleClick } = this.props;
 
-    if (!articles || pathname === '/') {
-      return (
-        <div>
-          <p>Welcome to NC-News</p>
-          <p>Please select a topic from above</p>
-        </div>
-      );
+    if (!articles) {
+      return <p>Loading.....</p>;
     } else {
       return (
         <section className="articleTitles">
-          <h3>{pathname.substring(1).toUpperCase()} ARTICLES</h3>
-          {articles.map(article => {
-            if (
-              article.belongs_to.title.toLowerCase() === pathname.substring(1)
-            )
-              return (
-                <div key={article._id} className="articleListItem">
-                  <a
-                    onClick={handleClick}
-                    id={article._id}
-                    name="selectedArticle"
-                  >
-                    {article.title}
-                  </a>
-                  <br />
-                  <a
-                    onClick={handleClick}
-                    id={article.created_by.username}
-                    name="selectedUser"
-                  >
-                    created by: {article.created_by.username}
-                  </a>
-                  <br />
-                  <br />
-                </div>
-              );
-          })}
+          <div className="articleList">
+            <h3>{pathname.substring(10).toUpperCase()} ARTICLES</h3>
+            {articles.map(article => {
+              if (
+                article.belongs_to.title.toLowerCase() ===
+                pathname.substring(10)
+              )
+                return (
+                  <div key={article._id} className="articleListItem">
+                    <a
+                      onClick={handleClick}
+                      id={article._id}
+                      name="selectedArticle"
+                    >
+                      {article.title}
+                    </a>
+                    <br />
+                    <a
+                      onClick={handleClick}
+                      id={article.created_by.username}
+                      name="selectedUser"
+                    >
+                      created by: {article.created_by.username}
+                    </a>
+                    <br />
+                    <br />
+                  </div>
+                );
+            })}
+            <Link to="/addArticle" className="addArticle">
+              <button>Add an Article</button>
+            </Link>
+          </div>
+
+          <ArticleInfo
+            selectedArticle={this.props.selectedArticle}
+            selectedUser={this.props.selectedUser}
+          />
         </section>
       );
     }

@@ -30,7 +30,7 @@ class Header extends Component {
             {topics.map(topic => {
               return (
                 <li key={topic.slug}>
-                  <NavLink to={topic.slug} className="navLink">
+                  <NavLink to={`/articles/${topic.slug}`} className="navLink">
                     {topic.title}
                   </NavLink>
                 </li>
