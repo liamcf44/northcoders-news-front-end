@@ -1,6 +1,31 @@
-.header {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #f3f3f3;
+  border: 1px solid #e7e7e7;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: maroon;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#title {
+  float: right;
+  display: block;
+  color: maroon;
+  text-align: center;
+  padding: 14px 16px;
 }

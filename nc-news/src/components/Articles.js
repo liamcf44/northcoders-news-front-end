@@ -5,7 +5,9 @@ class Articles extends Component {
   state = {};
 
   render() {
-    return <p>This is the Articles</p>;
+    let { location } = this.props;
+
+    return <p>ARTICLESSSSSSS</p>;
   }
 }
 

@@ -21,19 +21,25 @@ class Header extends Component {
     } else {
       return (
         <section className="header">
-          <div className="navBar">
-            <NavLink to="/">Home</NavLink>
+          <ul className="navBar">
+            <li>
+              <Link to="/" key="home" className="navLink">
+                Home
+              </Link>
+            </li>
             {topics.map(topic => {
               return (
-                <NavLink to={topic.slug} key={topic.slug}>
-                  {topic.title}
-                </NavLink>
+                <li key={topic.slug}>
+                  <Link to={topic.slug} className="navLink">
+                    {topic.title}
+                  </Link>
+                </li>
               );
             })}
-          </div>
-          <div className="title">
-            <h3>NC-News</h3>
-          </div>
+            <li id="title" key="title">
+              NC-News
+            </li>
+          </ul>
         </section>
       );
     }
