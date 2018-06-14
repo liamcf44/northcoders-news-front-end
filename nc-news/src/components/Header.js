@@ -36,7 +36,7 @@ class Header extends Component {
                 </li>
               );
             })}
-            <li id="title" key="title">
+            <li id="NCTitle" key="title">
               NC-News
             </li>
           </ul>

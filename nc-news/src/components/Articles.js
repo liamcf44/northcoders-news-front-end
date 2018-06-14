@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
-import ArticleInfo from './ArticleInfo';
+import * as api from '../api';
 
 class Articles extends Component {
   state = {
@@ -9,16 +8,16 @@ class Articles extends Component {
   };
 
   componentDidMount = async () => {
-    const data = await this.fetchArticleData();
+    const data = await api.fetchArticleData();
     this.setState({
       articles: data
     });
   };
 
   render() {
-    let pathname = this.props.location.pathname;
+    let pathname = this.props.match.url;
+    let topic = this.props.match.params.topic;
     let { articles } = this.state.articles;
-    let { handleClick } = this.props;
 
     if (!articles) {
       return <p>Loading.....</p>;
@@ -26,27 +25,20 @@ class Articles extends Component {
       return (
         <section className="articleTitles">
           <div className="articleList">
-            <h3>{pathname.substring(10).toUpperCase()} ARTICLES</h3>
+            <h3>{topic.toUpperCase()} ARTICLES</h3>
             {articles.map(article => {
-              if (
-                article.belongs_to.title.toLowerCase() ===
-                pathname.substring(10)
-              )
+              if (article.belongs_to.title.toLowerCase() === topic)
                 return (
                   <div key={article._id} className="articleListItem">
-                    <a
-                      onClick={handleClick}
+                    <Link
+                      to={`${pathname}/${article._id}`}
                       id={article._id}
                       name="selectedArticle"
                     >
                       {article.title}
-                    </a>
+                    </Link>
                     <br />
-                    <a
-                      onClick={handleClick}
-                      id={article.created_by.username}
-                      name="selectedUser"
-                    >
+                    <a id={article.created_by.username} name="selectedUser">
                       created by: {article.created_by.username}
                     </a>
                     <br />
@@ -54,27 +46,11 @@ class Articles extends Component {
                   </div>
                 );
             })}
-            <Link to="/addArticle" className="addArticle">
-              <button>Add an Article</button>
-            </Link>
           </div>
-
-          <ArticleInfo
-            selectedArticle={this.props.selectedArticle}
-            selectedUser={this.props.selectedUser}
-            userDetails={this.props.userDetails}
-          />
         </section>
       );
     }
   }
-
-  fetchArticleData = async () => {
-    let { data } = await axios
-      .get('https://liamcf44-northcoders-news.herokuapp.com/api/articles/')
-      .catch(err => console.log(err));
-    return data;
-  };
 }
 
 export default Articles;

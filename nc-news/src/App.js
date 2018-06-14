@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Articles from './components/Articles';
 import AddArticle from './components/AddArticle';
 import HomePage from './components/HomePage';
+import ArticleInfo from './components/ArticleInfo';
 
 class App extends Component {
   state = {
-    selectedArticle: '',
-    selectedUser: '',
     user: {
       _id: '5af568397e27165f2c6c2020',
       username: 'jessjelly'
@@ -24,26 +24,26 @@ class App extends Component {
         <br />
         <br />
         <br />
-        <div className="container">
-          <Route exact path="/" component={HomePage} />
+        <Route exact path="/" component={HomePage} />
+        <Switch>
           <Route
-            path="/articles/"
+            path="/articles/:topic/:articleid"
             render={props => (
-              <Articles
-                {...props}
-                handleClick={this.handleClick}
-                selectedArticle={this.state.selectedArticle}
-                selectedUser={this.state.selectedUser}
-                userDetails={this.state.user}
-              />
+              <ArticleInfo {...props} userDetails={this.state.user} />
             )}
           />
           <Route
-            exact
-            path="/addArticle"
-            render={props => <AddArticle {...props} user={this.state.user} />}
+            path="/articles/:topic"
+            render={props => <Articles {...props} />}
           />
-        </div>
+        </Switch>
+        <Route
+          exact
+          path="/addArticle"
+          render={props => <AddArticle {...props} user={this.state.user} />}
+        />
+
+        <Footer />
       </div>
     );
   }

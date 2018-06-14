@@ -1,4 +1,4 @@
-ul {
+.navBar {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -10,11 +10,11 @@ ul {
   width: 100%;
 }
 
-li {
+.navBar li {
   float: left;
 }
 
-li a {
+.navBar li a {
   display: block;
   color: maroon;
   text-align: center;
@@ -22,12 +22,37 @@ li a {
   text-decoration: none;
 }
 
-li a:hover {
+.navBar li a:hover {
   background-color: #555;
   color: white;
 }
 
-#title {
+.footer {
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 6%;
+}
+
+.footer span {
+  display: block;
+  color: maroon;
+}
+
+.addArticleButton {
+  font-size: 16px;
+  padding: 14px 40px;
+}
+
+.liam {
+  float: right;
+  padding: 5px 40px;
+}
+
+#NCTitle {
   float: right;
   display: block;
   color: maroon;
@@ -36,7 +61,7 @@ li a:hover {
   font-size: 2em;
 }
 
-#title:hover {
+#NCTitle:hover {
   color: whitesmoke;
   background-color: maroon;
 }
@@ -67,4 +92,13 @@ li a:hover {
   font-size: 1.4em;
   color: maroon;
   font-weight: 500;
+}
+
+input[type='text'] {
+  width: 45%;
+}
+
+input[name='body'] {
+  height: 400px;
+  font-size: 14px;
 }

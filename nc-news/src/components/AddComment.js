@@ -1,51 +1,31 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import * as api from '../api';
+import handleInput from './HandleInput';
 
 class AddComment extends Component {
   state = {
     commentBody: ''
   };
 
-  render() {
+  render = () => {
+    const { articleId, userDetails } = this.props;
+
     return (
       <div>
         <input
           placeholder="Add a comment here"
-          value={this.state.commentBody}
-          onChange={this.handleInput}
+          name="commentBody"
+          onChange={handleInput.bind(this)}
         />
-        <button onClick={this.postComment}>Add comment</button>
+        <button
+          onClick={() =>
+            api.postComment(this.state.commentBody, articleId, userDetails)
+          }
+        >
+          Add comment
+        </button>
       </div>
     );
-  }
-
-  handleInput = ({ target: { value } }) => {
-    console.log(value);
-    this.setState({
-      commentBody: value
-    });
-  };
-
-  postComment = () => {
-    const { articleId, userDetails } = this.props;
-    axios
-      .post(
-        `https://liamcf44-northcoders-news.herokuapp.com/api/articles/${articleId}/comments`,
-        {
-          body: this.state.commentBody,
-          belongs_to: articleId,
-          created_by: userDetails._id
-        }
-      )
-      .then(function(response) {
-        this.setState({
-          commentBody: ''
-        });
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
   };
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import * as api from '../api';
 import AddComment from './AddComment';
 
 class ArticleInfo extends Component {
@@ -8,13 +8,23 @@ class ArticleInfo extends Component {
     articleComments: {}
   };
 
-  componentDidUpdate = async (prevProps, prevState) => {
-    let { selectedArticle } = this.props;
-    if (prevProps !== this.props || prevState !== this.state) {
-      const articleData = await this.fetchIndividualArticleData(
-        selectedArticle
-      );
-      const commentData = await this.fetchCommentData(selectedArticle);
+  componentDidMount = async () => {
+    const id = this.props.match.params.articleid;
+
+    const articleData = await api.fetchIndividualArticleData(id);
+    const commentData = await api.fetchCommentData(id);
+
+    this.setState({
+      selectedArticle: articleData,
+      articleComments: commentData
+    });
+  };
+
+  componentDidUpdate = async prevProps => {
+    const id = this.props.match.params.articleid;
+    if (this.props.match.url !== prevProps.match.url) {
+      const articleData = await api.fetchIndividualArticleData(id);
+      const commentData = await api.fetchCommentData(id);
       this.setState({
         selectedArticle: articleData,
         articleComments: commentData
@@ -23,10 +33,10 @@ class ArticleInfo extends Component {
   };
 
   render() {
+    console.log('rendering');
     const { result: articleResult } = this.state.selectedArticle;
-    console.log(articleResult);
     const { comments: commentResult } = this.state.articleComments;
-    if (!articleResult) return <p>Please select an article or a user</p>;
+    if (!articleResult) return <p>loading....</p>;
     else {
       return (
         <section className="articleInfo">
@@ -38,13 +48,13 @@ class ArticleInfo extends Component {
               <i
                 className="far fa-arrow-alt-circle-up"
                 onClick={() =>
-                  this.handleVotes('article', articleResult[0]._id, 'up')
+                  api.handleVotes('article', articleResult[0]._id, 'up')
                 }
               />
               <i
                 className="far fa-arrow-alt-circle-down"
                 onClick={() =>
-                  this.handleVotes('article', articleResult[0]._id, 'down')
+                  api.handleVotes('article', articleResult[0]._id, 'down')
                 }
               />
             </span>
@@ -52,6 +62,10 @@ class ArticleInfo extends Component {
           </div>
           <br />
           <h4>{commentResult.length} Comments</h4>
+          <AddComment
+            articleId={articleResult[0]._id}
+            userDetails={this.props.userDetails}
+          />
           <div className="commentContent">
             {commentResult.map(comment => {
               return (
@@ -63,61 +77,28 @@ class ArticleInfo extends Component {
                     <i
                       className="far fa-arrow-alt-circle-up"
                       onClick={() =>
-                        this.handleVotes('comment', comment._id, 'up')
+                        api.handleVotes('comment', comment._id, 'up')
                       }
                     />
                     <i
                       className="far fa-arrow-alt-circle-down"
                       onClick={() =>
-                        this.handleVotes('comment', comment._id, 'down')
+                        api.handleVotes('comment', comment._id, 'down')
                       }
                     />
                   </span>
+                  <button onClick={() => api.deleteComment(comment._id)}>
+                    Delete Comment
+                  </button>
+                  <div>{}</div>
                 </div>
               );
             })}
-            <br />
-            <AddComment
-              articleId={articleResult[0]._id}
-              userDetails={this.props.userDetails}
-            />
           </div>
         </section>
       );
     }
   }
-
-  fetchIndividualArticleData = async id => {
-    const { data } = await axios
-      .get(`https://liamcf44-northcoders-news.herokuapp.com/api/articles/${id}`)
-      .catch(err => console.log(err));
-    return data;
-  };
-
-  fetchCommentData = async id => {
-    const { data } = await axios
-      .get(
-        `https://liamcf44-northcoders-news.herokuapp.com/api/articles/${id}/comments`
-      )
-      .catch(err => console.log(err));
-    return data;
-  };
-
-  handleVotes = (space, id, direction) => {
-    if (space === 'comment') {
-      axios
-        .put(
-          `https://liamcf44-northcoders-news.herokuapp.com/api/comments/${id}?vote=${direction}`
-        )
-        .catch(err => console.log(err));
-    } else if (space === 'article') {
-      axios
-        .put(
-          `https://liamcf44-northcoders-news.herokuapp.com/api/articles/${id}?vote=${direction}`
-        )
-        .catch(err => console.log(err));
-    }
-  };
 }
 
 export default ArticleInfo;
