@@ -42,17 +42,10 @@ class App extends Component {
           path="/addArticle"
           render={props => <AddArticle {...props} user={this.state.user} />}
         />
-
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }
-
-  handleClick = ({ target }) => {
-    this.setState({
-      [target.name]: target.id
-    });
-  };
 }
 
 export default App;

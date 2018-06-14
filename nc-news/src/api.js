@@ -10,20 +10,22 @@ export const fetchArticleData = async () => {
 };
 
 export const fetchIndividualArticleData = async id => {
-  const { data } = await axios
-    .get(`${url}/articles/${id}`)
-    .catch(err => console.log(err));
-  return data;
+  const {
+    data: { result }
+  } = await axios.get(`${url}/articles/${id}`).catch(err => console.log(err));
+  return result[0];
 };
 
 export const fetchCommentData = async id => {
-  const { data } = await axios
+  const {
+    data: { comments }
+  } = await axios
     .get(`${url}/articles/${id}/comments`)
     .catch(err => console.log(err));
-  return data;
+  return comments;
 };
 
-export const handleVotes = (space, id, direction) => {
+export const sendVote = (space, id, direction) => {
   if (space === 'comment') {
     axios
       .put(`${url}/comments/${id}?vote=${direction}`)

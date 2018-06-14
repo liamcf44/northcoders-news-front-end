@@ -5,15 +5,19 @@ import AddComment from './AddComment';
 class ArticleInfo extends Component {
   state = {
     selectedArticle: {},
-    articleComments: {}
+    articleComments: []
   };
 
   componentDidMount = async () => {
     const id = this.props.match.params.articleid;
 
     const articleData = await api.fetchIndividualArticleData(id);
-    const commentData = await api.fetchCommentData(id);
-
+    let commentData;
+    try {
+      commentData = await api.fetchCommentData(id);
+    } catch (e) {
+      commentData = [];
+    }
     this.setState({
       selectedArticle: articleData,
       articleComments: commentData
@@ -33,41 +37,40 @@ class ArticleInfo extends Component {
   };
 
   render() {
-    console.log('rendering');
-    const { result: articleResult } = this.state.selectedArticle;
-    const { comments: commentResult } = this.state.articleComments;
-    if (!articleResult) return <p>loading....</p>;
+    const { selectedArticle, articleComments } = this.state;
+
+    if (!selectedArticle._id) return <p>loading....</p>;
     else {
       return (
         <section className="articleInfo">
           <div className="articleContent">
-            <h4>{articleResult[0].title}</h4>
-            <h5>Created by: {articleResult[0].created_by.username}</h5>
-            <p>Votes: {articleResult[0].votes}</p>
+            <h4>{selectedArticle.title}</h4>
+            <h5>Created by: {selectedArticle.created_by.username}</h5>
+            <p>Votes: {selectedArticle.votes}</p>
             <span>
               <i
                 className="far fa-arrow-alt-circle-up"
                 onClick={() =>
-                  api.handleVotes('article', articleResult[0]._id, 'up')
+                  this.handleVotes('article', selectedArticle._id, 'up')
                 }
               />
               <i
                 className="far fa-arrow-alt-circle-down"
                 onClick={() =>
-                  api.handleVotes('article', articleResult[0]._id, 'down')
+                  this.handleVotes('article', selectedArticle._id, 'down')
                 }
               />
             </span>
-            <p>{articleResult[0].body}</p>
+            <p>{selectedArticle.body}</p>
           </div>
           <br />
-          <h4>{commentResult.length} Comments</h4>
+          <h4>{articleComments.length} Comments</h4>
           <AddComment
-            articleId={articleResult[0]._id}
+            articleId={selectedArticle._id}
             userDetails={this.props.userDetails}
           />
           <div className="commentContent">
-            {commentResult.map(comment => {
+            {articleComments.map(comment => {
               return (
                 <div key={comment._id}>
                   <h5>{comment.created_by.username}:</h5>
@@ -77,13 +80,13 @@ class ArticleInfo extends Component {
                     <i
                       className="far fa-arrow-alt-circle-up"
                       onClick={() =>
-                        api.handleVotes('comment', comment._id, 'up')
+                        this.handleVotes('comment', comment._id, 'up')
                       }
                     />
                     <i
                       className="far fa-arrow-alt-circle-down"
                       onClick={() =>
-                        api.handleVotes('comment', comment._id, 'down')
+                        this.handleVotes('comment', comment._id, 'down')
                       }
                     />
                   </span>
@@ -99,6 +102,32 @@ class ArticleInfo extends Component {
       );
     }
   }
+
+  handleVotes = (space, id, direction) => {
+    const { selectedArticle, articleComments } = this.state;
+    api.sendVote(space, id, direction);
+    if (space === 'article') {
+      this.setState({
+        selectedArticle: {
+          ...selectedArticle,
+          votes:
+            direction === 'up'
+              ? selectedArticle.votes + 1
+              : selectedArticle.votes - 1
+        }
+      });
+    }
+    if (space === 'comment') {
+      let data = articleComments.map(comment => {
+        if (id === comment._id)
+          direction === 'up' ? comment.votes++ : comment.votes--;
+        return comment;
+      });
+      this.setState({
+        articleComments: data
+      });
+    }
+  };
 }
 
 export default ArticleInfo;
