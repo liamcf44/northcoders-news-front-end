@@ -33,34 +33,37 @@ class ArticleInfo extends Component {
     if (!selectedArticle._id) return <p>loading....</p>;
     else {
       return (
-        <section className="articleInfo">
-          <div className="articleContent">
-            <h4>{selectedArticle.title}</h4>
-            <h5>Created by: {selectedArticle.created_by.username}</h5>
-            <p>Votes: {selectedArticle.votes}</p>
-            <span>
-              <i
-                className="far fa-arrow-alt-circle-up"
-                onClick={() =>
-                  this.handleVotes('article', selectedArticle._id, 'up')
-                }
+        <div className="container-fluid">
+          <div className="row justify-content-around">
+            <div className="col-sm-7">
+              <h4>{selectedArticle.title}</h4>
+              <h5>Created by: {selectedArticle.created_by.username}</h5>
+              <p>Votes: {selectedArticle.votes}</p>
+              <span>
+                <i
+                  className="far fa-arrow-alt-circle-up"
+                  onClick={() =>
+                    this.handleVotes('article', selectedArticle._id, 'up')
+                  }
+                />
+                <i
+                  className="far fa-arrow-alt-circle-down"
+                  onClick={() =>
+                    this.handleVotes('article', selectedArticle._id, 'down')
+                  }
+                />
+              </span>
+              <p>{selectedArticle.body}</p>
+            </div>
+            <div className="col-sm-3">
+              <CommentInfo
+                {...this.props}
+                userDetails={userDetails}
+                articleID={selectedArticle._id}
               />
-              <i
-                className="far fa-arrow-alt-circle-down"
-                onClick={() =>
-                  this.handleVotes('article', selectedArticle._id, 'down')
-                }
-              />
-            </span>
-            <p>{selectedArticle.body}</p>
+            </div>
           </div>
-          <br />
-          <CommentInfo
-            {...this.props}
-            userDetails={userDetails}
-            articleID={selectedArticle._id}
-          />
-        </section>
+        </div>
       );
     }
   }

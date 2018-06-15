@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import * as api from '../api';
 import { NavLink, Link } from 'react-router-dom';
 
 class Header extends Component {
@@ -8,7 +8,7 @@ class Header extends Component {
   };
 
   componentDidMount = async () => {
-    const data = await this.fetchTopicData();
+    const data = await api.fetchTopicData();
     this.setState({
       topics: data
     });
@@ -20,40 +20,40 @@ class Header extends Component {
       return <p>loading...</p>;
     } else {
       return (
-        <section className="header">
-          <ul className="navBar">
-            <li>
-              <NavLink to="/" key="home" className="navLink">
-                Home
-              </NavLink>
-            </li>
-            {topics.map(topic => {
-              return (
-                <li key={topic.slug}>
-                  <NavLink to={`/articles/${topic.slug}`} className="navLink">
-                    {topic.title}
+        <div className="container-fluid">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+                <li className="nav-item active">
+                  <NavLink to="/" key="home" className="nav-link">
+                    Home <span class="sr-only">(current)</span>
                   </NavLink>
                 </li>
-              );
-            })}
-            <li id="NCTitle" key="title">
-              NC-News
-            </li>
-            <Link to="/addArticle">
-              <button className="addArticleButton">Add an Article</button>
-            </Link>
-          </ul>
-        </section>
+                {topics.map(topic => {
+                  return (
+                    <li key={topic.slug} className="nav-item">
+                      <NavLink
+                        to={`/articles/${topic.slug}`}
+                        className="nav-link"
+                      >
+                        {topic.title}
+                      </NavLink>
+                    </li>
+                  );
+                })}
+              </ul>
+              <Link to="/addArticle">
+                <button className="addArticleButton">Add an Article</button>
+              </Link>
+              <span class="navbar-text" id="NCTitle">
+                NC-News
+              </span>
+            </div>
+          </nav>
+        </div>
       );
     }
   }
-
-  fetchTopicData = async () => {
-    const { data } = await axios
-      .get('https://liamcf44-northcoders-news.herokuapp.com/api/topics/')
-      .catch(err => console.log(err));
-    return data;
-  };
 }
 
 export default Header;

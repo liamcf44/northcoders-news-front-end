@@ -23,31 +23,36 @@ class Articles extends Component {
       return <p>Loading.....</p>;
     } else {
       return (
-        <section className="articleTitles">
-          <div className="articleList">
+        <div className="container-fluid">
+          <div className="row justify-content-center">
             <h3>{topic.toUpperCase()} ARTICLES</h3>
-            {articles.map(article => {
-              if (article.belongs_to.title.toLowerCase() === topic)
-                return (
-                  <div key={article._id} className="articleListItem">
-                    <Link
-                      to={`${pathname}/${article._id}`}
-                      id={article._id}
-                      name="selectedArticle"
-                    >
-                      {article.title}
-                    </Link>
-                    <br />
-                    <a id={article.created_by.username} name="selectedUser">
-                      created by: {article.created_by.username}
-                    </a>
-                    <br />
-                    <br />
-                  </div>
-                );
-            })}
+            <br />
           </div>
-        </section>
+          <div className="row justify-content-start">
+            <div className="col-sm align-self-start">
+              {articles.map(article => {
+                if (article.belongs_to.title.toLowerCase() === topic)
+                  return (
+                    <div key={article._id} className="articleListItem">
+                      <Link
+                        to={`${pathname}/${article._id}`}
+                        id={article._id}
+                        name="selectedArticle"
+                      >
+                        {article.title}
+                      </Link>
+                      <br />
+                      <a id={article.created_by.username} name="selectedUser">
+                        created by: {article.created_by.username}
+                      </a>
+                      <br />
+                      <br />
+                    </div>
+                  );
+              })}
+            </div>
+          </div>
+        </div>
       );
     }
   }

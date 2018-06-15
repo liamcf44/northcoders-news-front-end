@@ -19,7 +19,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="container-fluid">
         <Header />
         <br />
         <br />
@@ -42,7 +42,7 @@ class App extends Component {
           path="/addArticle"
           render={props => <AddArticle {...props} user={this.state.user} />}
         />
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }

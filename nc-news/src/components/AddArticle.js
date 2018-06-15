@@ -21,56 +21,87 @@ class AddArticle extends Component {
     const { title, body, topic, topicData } = this.state;
     const { user } = this.props;
     return (
-      <section className="addArticle">
-        <br />
-        <br />
-        <h4>Add an Article</h4>
-        <form>
-          Title:{' '}
-          <input type="text" name="title" onChange={handleInput.bind(this)} />
+      <div className="container-fluid">
+        <div className="row justify-content-center">
+          <h3>Add an Article!</h3>
           <br />
-          <br />
-          Body:{' '}
-          <input type="text" name="body" onChange={handleInput.bind(this)} />
-          <br />
-          <br />
-          Topic:
-          <br />
-          Coding
-          <input
-            type="radio"
-            name="topic"
-            value="coding"
-            id="coding"
-            onChange={handleInput.bind(this)}
-          />
-          Football
-          <input
-            type="radio"
-            name="topic"
-            value="football"
-            id="football"
-            onChange={handleInput.bind(this)}
-          />
-          Cooking
-          <input
-            type="radio"
-            name="topic"
-            value="cooking"
-            id="cooking"
-            onChange={handleInput.bind(this)}
-          />
-          <br />
-          <br />
-          <button
-            onClick={e =>
-              this.handleNewArticle(e, title, body, topic, user._id, topicData)
-            }
-          >
-            Add Article
-          </button>
-        </form>
-      </section>
+        </div>
+        <div className="row justify-content-start">
+          <div className="col-sm-8 align-self-start">
+            <form>
+              <div className="form-group">
+                <label for="inputTitle">Title:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="inputTitle"
+                  aria-describedby="titleHelp"
+                  placeholder="Enter Title"
+                  name="title"
+                  onChange={handleInput.bind(this)}
+                />
+                <small id="titleHelp" className="form-text text-muted">
+                  What will be the title of your article?
+                </small>
+              </div>
+              <div className="form-group">
+                <label for="inputBody">Article Body:</label>
+                <textarea
+                  type="text"
+                  className="form-control"
+                  id="inputBody"
+                  aria-describedby="bodyHelp"
+                  placeholder="Enter Your Article Here"
+                  rows="7"
+                  name="body"
+                  onChange={handleInput.bind(this)}
+                />
+                <small id="bodyHelp" className="form-text text-muted">
+                  Put the content of your article here....
+                </small>
+              </div>
+              <div className="form-group">
+                <label for="topicSelect">Select a Topic</label>
+                <select
+                  className="form-control"
+                  id="topicSelect"
+                  name="topic"
+                  onChange={handleInput.bind(this)}
+                >
+                  <option selected disabled>
+                    Choose a topic
+                  </option>
+                  <option value="coding" id="coding">
+                    Coding
+                  </option>
+                  <option value="football" id="football">
+                    Football
+                  </option>
+                  <option value="cooking" id="cooking">
+                    Cooking
+                  </option>
+                </select>
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={e =>
+                  this.handleNewArticle(
+                    e,
+                    title,
+                    body,
+                    topic,
+                    user._id,
+                    topicData
+                  )
+                }
+              >
+                Add your article
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     );
   }
 
