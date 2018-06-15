@@ -42,7 +42,7 @@ class App extends Component {
           path="/addArticle"
           render={props => <AddArticle {...props} user={this.state.user} />}
         />
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }

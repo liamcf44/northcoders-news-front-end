@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import handleInput from './HandleInput';
 import * as api from '../api';
 
@@ -64,7 +65,7 @@ class AddArticle extends Component {
           <br />
           <button
             onClick={e =>
-              api.addArticle(e, title, body, topic, user._id, topicData)
+              this.handleNewArticle(e, title, body, topic, user._id, topicData)
             }
           >
             Add Article
@@ -73,6 +74,12 @@ class AddArticle extends Component {
       </section>
     );
   }
+
+  handleNewArticle = async (e, title, body, topic, userid, topicData) => {
+    const docs = await api.addArticle(e, title, body, topic, userid, topicData);
+    const id = docs.data.newArticleDoc._id;
+    this.props.history.push(`/articles/${topic}/${id}`);
+  };
 }
 
 export default AddArticle;

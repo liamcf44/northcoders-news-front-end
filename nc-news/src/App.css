@@ -42,16 +42,6 @@
   color: maroon;
 }
 
-.addArticleButton {
-  font-size: 16px;
-  padding: 14px 40px;
-}
-
-.liam {
-  float: right;
-  padding: 5px 40px;
-}
-
 #NCTitle {
   float: right;
   display: block;
@@ -59,6 +49,18 @@
   text-align: center;
   padding: 14px 16px;
   font-size: 2em;
+}
+
+.addArticleButton {
+  font-size: 16px;
+  padding: 14px 40px;
+  float: right;
+  display: block;
+}
+
+.liam {
+  float: right;
+  padding: 5px 40px;
 }
 
 #NCTitle:hover {

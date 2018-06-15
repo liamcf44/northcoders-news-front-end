@@ -71,12 +71,15 @@ export const addArticle = async (e, title, body, topic, userID, topicData) => {
     return acc;
   }, '');
 
-  axios
+  return axios
     .post(`${url}/topics/${topicID}/articles`, {
       title: title,
       body: body,
       belongs_to: topicID,
       created_by: userID
+    })
+    .then(res => {
+      return res;
     })
     .catch(function(error) {
       console.log(error);

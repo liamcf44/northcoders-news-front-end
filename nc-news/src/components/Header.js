@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 class Header extends Component {
   state = {
@@ -39,6 +39,9 @@ class Header extends Component {
             <li id="NCTitle" key="title">
               NC-News
             </li>
+            <Link to="/addArticle">
+              <button className="addArticleButton">Add an Article</button>
+            </Link>
           </ul>
         </section>
       );
