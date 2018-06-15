@@ -8,25 +8,44 @@ class Header extends Component {
   };
 
   componentDidMount = async () => {
-    const data = await api.fetchTopicData();
-    this.setState({
-      topics: data
-    });
+    try {
+      let data = await api.fetchTopicData();
+      this.setState({
+        topics: data
+      });
+    } catch (err) {
+      this.props.history.push(`/error`);
+    }
   };
 
   render() {
     const { topics } = this.state.topics;
     if (!topics) {
-      return <p>loading...</p>;
+      return <p />;
     } else {
       return (
         <div className="container-fluid">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse" id="navbarText">
-              <ul class="navbar-nav mr-auto">
+          <nav className="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+            <a class="navbar-brand">NC-News</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon" />
+            </button>
+            <div
+              className="collapse navbar-collapse"
+              id="navbarSupportedContent"
+            >
+              <ul className="navbar-nav mr-auto">
                 <li className="nav-item active">
                   <NavLink to="/" key="home" className="nav-link">
-                    Home <span class="sr-only">(current)</span>
+                    Home <span className="sr-only">(current)</span>
                   </NavLink>
                 </li>
                 {topics.map(topic => {
@@ -43,11 +62,10 @@ class Header extends Component {
                 })}
               </ul>
               <Link to="/addArticle">
-                <button className="addArticleButton">Add an Article</button>
+                <button type="button" className="btn btn-outline-light btn-lg">
+                  Add an Article
+                </button>
               </Link>
-              <span class="navbar-text" id="NCTitle">
-                NC-News
-              </span>
             </div>
           </nav>
         </div>

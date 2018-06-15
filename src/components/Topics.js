@@ -8,10 +8,14 @@ class Articles extends Component {
   };
 
   componentDidMount = async () => {
-    const data = await api.fetchArticleData();
-    this.setState({
-      articles: data
-    });
+    try {
+      let data = await api.fetchArticleData();
+      this.setState({
+        articles: data
+      });
+    } catch (err) {
+      this.props.history.push(`/error`);
+    }
   };
 
   render() {
@@ -20,7 +24,7 @@ class Articles extends Component {
     let { articles } = this.state.articles;
 
     if (!articles) {
-      return <p>Loading.....</p>;
+      return <p />;
     } else {
       return (
         <div className="container-fluid">

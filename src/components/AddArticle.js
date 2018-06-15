@@ -11,10 +11,14 @@ class AddArticle extends Component {
   };
 
   componentDidMount = async () => {
-    const { topics } = await api.fetchTopicData();
-    this.setState({
-      topicData: topics
-    });
+    try {
+      let { topics } = await api.fetchTopicData();
+      this.setState({
+        topicData: topics
+      });
+    } catch (err) {
+      this.props.history.push(`/error`);
+    }
   };
 
   render() {
@@ -30,7 +34,7 @@ class AddArticle extends Component {
           <div className="col-sm-8 align-self-start">
             <form>
               <div className="form-group">
-                <label for="inputTitle">Title:</label>
+                <label htmlFor="inputTitle">Title:</label>
                 <input
                   type="text"
                   className="form-control"
@@ -45,7 +49,7 @@ class AddArticle extends Component {
                 </small>
               </div>
               <div className="form-group">
-                <label for="inputBody">Article Body:</label>
+                <label htmlFor="inputBody">Article Body:</label>
                 <textarea
                   type="text"
                   className="form-control"
@@ -61,7 +65,7 @@ class AddArticle extends Component {
                 </small>
               </div>
               <div className="form-group">
-                <label for="topicSelect">Select a Topic</label>
+                <label htmlFor="topicSelect">Select a Topic</label>
                 <select
                   className="form-control"
                   id="topicSelect"
@@ -84,7 +88,7 @@ class AddArticle extends Component {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-dark"
                 onClick={e =>
                   this.handleNewArticle(
                     e,
@@ -106,9 +110,13 @@ class AddArticle extends Component {
   }
 
   handleNewArticle = async (e, title, body, topic, userid, topicData) => {
-    const docs = await api.addArticle(e, title, body, topic, userid, topicData);
-    const id = docs.data.newArticleDoc._id;
-    this.props.history.push(`/articles/${topic}/${id}`);
+    try {
+      let docs = await api.addArticle(e, title, body, topic, userid, topicData);
+      let id = docs.data.newArticleDoc._id;
+      this.props.history.push(`/articles/${topic}/${id}`);
+    } catch (err) {
+      this.props.history.push(`/error`);
+    }
   };
 }
 
