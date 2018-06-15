@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
 import * as api from '../api';
-import AddComment from './AddComment';
+import CommentInfo from './CommentInfo';
 
 class ArticleInfo extends Component {
   state = {
-    selectedArticle: {},
-    articleComments: []
+    selectedArticle: {}
   };
 
   componentDidMount = async () => {
     const id = this.props.match.params.articleid;
 
     const articleData = await api.fetchIndividualArticleData(id);
-    let commentData;
-    try {
-      commentData = await api.fetchCommentData(id);
-    } catch (e) {
-      commentData = [];
-    }
+
     this.setState({
-      selectedArticle: articleData,
-      articleComments: commentData
+      selectedArticle: articleData
     });
   };
 
@@ -28,17 +21,15 @@ class ArticleInfo extends Component {
     const id = this.props.match.params.articleid;
     if (this.props.match.url !== prevProps.match.url) {
       const articleData = await api.fetchIndividualArticleData(id);
-      const commentData = await api.fetchCommentData(id);
       this.setState({
-        selectedArticle: articleData,
-        articleComments: commentData
+        selectedArticle: articleData
       });
     }
   };
 
   render() {
-    const { selectedArticle, articleComments } = this.state;
-
+    const { selectedArticle } = this.state;
+    const { userDetails } = this.props;
     if (!selectedArticle._id) return <p>loading....</p>;
     else {
       return (
@@ -64,40 +55,11 @@ class ArticleInfo extends Component {
             <p>{selectedArticle.body}</p>
           </div>
           <br />
-          <h4>{articleComments.length} Comments</h4>
-          <AddComment
-            articleId={selectedArticle._id}
-            userDetails={this.props.userDetails}
+          <CommentInfo
+            {...this.props}
+            userDetails={userDetails}
+            articleID={selectedArticle._id}
           />
-          <div className="commentContent">
-            {articleComments.map(comment => {
-              return (
-                <div key={comment._id}>
-                  <h5>{comment.created_by.username}:</h5>
-                  <p>{comment.body}</p>
-                  <p>Votes: {comment.votes}</p>
-                  <span>
-                    <i
-                      className="far fa-arrow-alt-circle-up"
-                      onClick={() =>
-                        this.handleVotes('comment', comment._id, 'up')
-                      }
-                    />
-                    <i
-                      className="far fa-arrow-alt-circle-down"
-                      onClick={() =>
-                        this.handleVotes('comment', comment._id, 'down')
-                      }
-                    />
-                  </span>
-                  <button onClick={() => api.deleteComment(comment._id)}>
-                    Delete Comment
-                  </button>
-                  <div>{}</div>
-                </div>
-              );
-            })}
-          </div>
         </section>
       );
     }

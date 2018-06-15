@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Articles from './components/Articles';
+import Topics from './components/Topics';
 import AddArticle from './components/AddArticle';
 import HomePage from './components/HomePage';
 import ArticleInfo from './components/ArticleInfo';
@@ -34,7 +34,7 @@ class App extends Component {
           />
           <Route
             path="/articles/:topic"
-            render={props => <Articles {...props} />}
+            render={props => <Topics {...props} />}
           />
         </Switch>
         <Route
@@ -42,7 +42,7 @@ class App extends Component {
           path="/addArticle"
           render={props => <AddArticle {...props} user={this.state.user} />}
         />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

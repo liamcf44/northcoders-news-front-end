@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import handleInput from './HandleInput';
 import * as api from '../api';
 

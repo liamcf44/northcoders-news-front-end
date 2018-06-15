@@ -38,12 +38,13 @@ export const sendVote = (space, id, direction) => {
 };
 
 export const postComment = (commentBody, articleId, userDetails) => {
-  axios
+  return axios
     .post(`${url}/articles/${articleId}/comments`, {
       body: commentBody,
       belongs_to: articleId,
       created_by: userDetails._id
     })
+    .then(res => res)
     .catch(function(error) {
       console.log(error);
     });
