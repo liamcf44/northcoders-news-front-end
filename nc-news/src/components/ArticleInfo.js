@@ -66,29 +66,17 @@ class ArticleInfo extends Component {
   }
 
   handleVotes = (space, id, direction) => {
-    const { selectedArticle, articleComments } = this.state;
+    const { selectedArticle } = this.state;
     api.sendVote(space, id, direction);
-    if (space === 'article') {
-      this.setState({
-        selectedArticle: {
-          ...selectedArticle,
-          votes:
-            direction === 'up'
-              ? selectedArticle.votes + 1
-              : selectedArticle.votes - 1
-        }
-      });
-    }
-    if (space === 'comment') {
-      let data = articleComments.map(comment => {
-        if (id === comment._id)
-          direction === 'up' ? comment.votes++ : comment.votes--;
-        return comment;
-      });
-      this.setState({
-        articleComments: data
-      });
-    }
+    this.setState({
+      selectedArticle: {
+        ...selectedArticle,
+        votes:
+          direction === 'up'
+            ? selectedArticle.votes + 1
+            : selectedArticle.votes - 1
+      }
+    });
   };
 }
 

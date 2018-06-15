@@ -34,9 +34,12 @@ class CommentInfo extends Component {
   };
 
   render() {
-    console.log(this.state);
     const { articleComments } = this.state;
     const { userDetails, articleID } = this.props;
+
+    articleComments.sort((a, b) => {
+      return b.created_at - a.created_at;
+    });
 
     return (
       <section className="commentInfo">
@@ -99,29 +102,16 @@ class CommentInfo extends Component {
   }
 
   handleVotes = (space, id, direction) => {
-    const { selectedArticle, articleComments } = this.state;
+    const { articleComments } = this.state;
     api.sendVote(space, id, direction);
-    if (space === 'article') {
-      this.setState({
-        selectedArticle: {
-          ...selectedArticle,
-          votes:
-            direction === 'up'
-              ? selectedArticle.votes + 1
-              : selectedArticle.votes - 1
-        }
-      });
-    }
-    if (space === 'comment') {
-      let data = articleComments.map(comment => {
-        if (id === comment._id)
-          direction === 'up' ? comment.votes++ : comment.votes--;
-        return comment;
-      });
-      this.setState({
-        articleComments: data
-      });
-    }
+    let data = articleComments.map(comment => {
+      if (id === comment._id)
+        direction === 'up' ? comment.votes++ : comment.votes--;
+      return comment;
+    });
+    this.setState({
+      articleComments: data
+    });
   };
 
   handleDeleteComment = async id => {
