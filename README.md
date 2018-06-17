@@ -47,7 +47,10 @@ This is the page that is displayed if an error occurs
 
 This API is hosted on Heroku using API calls to the back end which is also hosted on Heroku. You can do the same by setting up an account at 'heroku.com'
 
-This backend API can be found at the following Heroku link, `https://stormy-meadow-76642.herokuapp.com/` and it's git link is `https://git.heroku.com/stormy-meadow-76642.git`
+The frontend Heroku app can be found at the following Heroku Link,
+`https://pacific-hamlet-50062.herokuapp.com/` and it's git link is `    https://git.heroku.com/pacific-hamlet-50062.git` 
+
+This backend API can be found at the following Heroku link, `https://liamcf44-northcoders-news.herokuapp.com/` and it's git link is `https://git.heroku.com/liamcf44-northcoders-news.git`.
 
 ### BUILT WITH
 
