@@ -40,7 +40,6 @@ class CommentInfo extends Component {
     const { articleComments } = this.state;
     const { userDetails, articleID } = this.props;
 
-    console.log(articleComments, '******');
     articleComments.sort((a, b) => {
       return b.created_at - a.created_at;
     });

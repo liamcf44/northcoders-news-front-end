@@ -4,7 +4,6 @@ A portfolio project for Northcoders in which a React front end is built, which i
 
 This front end is then hosted on Heroku.
 
-
 ### GETTING STARTED
 
 You will need to run the following to recreate this project:
@@ -48,25 +47,29 @@ This is the page that is displayed if an error occurs
 This API is hosted on Heroku using API calls to the back end which is also hosted on Heroku. You can do the same by setting up an account at 'heroku.com'
 
 The frontend Heroku app can be found at the following Heroku Link,
-`https://pacific-hamlet-50062.herokuapp.com/` and it's git link is `    https://git.heroku.com/pacific-hamlet-50062.git` 
+`https://pacific-hamlet-50062.herokuapp.com/` and it's git link is `https://git.heroku.com/pacific-hamlet-50062.git`
 
 This backend API can be found at the following Heroku link, `https://liamcf44-northcoders-news.herokuapp.com/` and it's git link is `https://git.heroku.com/liamcf44-northcoders-news.git`.
+
+### BOOTSTRAP
+
+The Bootstrap framework was used to structure the layout of the website. More info can be found at `https://getbootstrap.com/docs/3.3/getting-started/`.
 
 ### BUILT WITH
 
 The following dependencies were used to build the app:
 
-* React v16.4.0
-* React-Dom v16.4.0
-* React-Router-Dom v4.3.1
-* React-Scripts v1.1.4
-* Axios v0.18.0
-* Bootstrap 4.1.1
-* Moment 2.22.2
+- React v16.4.0
+- React-Dom v16.4.0
+- React-Router-Dom v4.3.1
+- React-Scripts v1.1.4
+- Axios v0.18.0
+- Bootstrap 4.1.1
+- Moment 2.22.2
 
 ### AUTHORS
 
 Liam Freeman:
 
-* Email: liamcf44@protonmail.com
-* GitHub: liamcf44
+- Email: liamcf44@protonmail.com
+- GitHub: liamcf44
