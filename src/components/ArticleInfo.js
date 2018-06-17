@@ -64,6 +64,7 @@ class ArticleInfo extends Component {
                         this.handleVotes('article', selectedArticle._id, 'up')
                       }
                     />
+
                     <i
                       className="far fa-arrow-alt-circle-down fa-2x"
                       onClick={() =>
@@ -93,17 +94,21 @@ class ArticleInfo extends Component {
   }
 
   handleVotes = (space, id, direction) => {
-    const { selectedArticle } = this.state;
-    api.sendVote(space, id, direction);
-    this.setState({
-      selectedArticle: {
-        ...selectedArticle,
-        votes:
-          direction === 'up'
-            ? selectedArticle.votes + 1
-            : selectedArticle.votes - 1
-      }
-    });
+    try {
+      const { selectedArticle } = this.state;
+      api.sendVote(space, id, direction);
+      this.setState({
+        selectedArticle: {
+          ...selectedArticle,
+          votes:
+            direction === 'up'
+              ? selectedArticle.votes + 1
+              : selectedArticle.votes - 1
+        }
+      });
+    } catch (err) {
+      this.props.history.push(`/error`);
+    }
   };
 }
 

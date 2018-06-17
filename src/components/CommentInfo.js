@@ -40,6 +40,7 @@ class CommentInfo extends Component {
     const { articleComments } = this.state;
     const { userDetails, articleID } = this.props;
 
+    console.log(articleComments, '******');
     articleComments.sort((a, b) => {
       return b.created_at - a.created_at;
     });
@@ -81,7 +82,7 @@ class CommentInfo extends Component {
                 <br />
                 <div className="row">
                   <div className="col-sm-3">
-                    <h6>{comment.created_by.username}:</h6>{' '}
+                    <h6>{comment.created_by.username}:</h6>
                   </div>
                   <div className="col-sm-9">
                     <span>{comment.body}</span>
@@ -109,6 +110,7 @@ class CommentInfo extends Component {
                           this.handleVotes('comment', comment._id, 'up')
                         }
                       />
+
                       <i
                         className="far fa-arrow-alt-circle-down fa-2x"
                         onClick={() =>

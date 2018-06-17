@@ -26,9 +26,9 @@ class Header extends Component {
       return (
         <div className="container-fluid">
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark text-white">
-            <a class="navbar-brand">NC-News</a>
+            <a className="navbar-brand">NC-News</a>
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-toggle="collapse"
               data-target="#navbarSupportedContent"
@@ -36,7 +36,7 @@ class Header extends Component {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon" />
+              <span className="navbar-toggler-icon" />
             </button>
             <div
               className="collapse navbar-collapse"

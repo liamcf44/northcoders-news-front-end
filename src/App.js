@@ -23,8 +23,8 @@ class App extends Component {
         <br />
         <br />
         <br />
-        <Route exact path="/" component={HomePage} />
         <Switch>
+          <Route exact path="/" component={HomePage} />
           <Route
             path="/articles/:topic/:articleid"
             render={props => (
@@ -35,12 +35,13 @@ class App extends Component {
             path="/articles/:topic"
             render={props => <Topics {...props} />}
           />
+          <Route
+            exact
+            path="/addArticle"
+            render={props => <AddArticle {...props} user={this.state.user} />}
+          />
+          <Route path="/*" component={ErrorPage} />
         </Switch>
-        <Route
-          exact
-          path="/addArticle"
-          render={props => <AddArticle {...props} user={this.state.user} />}
-        />
         <Route exact path="/error" component={ErrorPage} />
       </div>
     );

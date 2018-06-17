@@ -1,12 +1,15 @@
 import React from 'react';
 
-function Error404(props) {
+function ErrorPage() {
   return (
     <div className="container-fluid">
       <div className="row">
         <div className="col" />
         <div className="col-7">
-          <h2>There seems to be an error, please try again...</h2>
+          <h2>404 Error - Page Note Found</h2>
+          <br />
+          <br />
+          <h4>There seems to be an error, please try again...</h4>
         </div>
         <div className="col" />
       </div>
@@ -14,4 +17,4 @@ function Error404(props) {
   );
 }
 
-export default Error404;
+export default ErrorPage;

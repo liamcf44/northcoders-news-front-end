@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import * as api from '../api';
 
 class Articles extends Component {
@@ -22,6 +22,7 @@ class Articles extends Component {
     let pathname = this.props.match.url;
     let topic = this.props.match.params.topic;
     let { articles } = this.state.articles;
+    let articleCount = 0;
 
     if (!articles) {
       return <p />;
@@ -35,7 +36,8 @@ class Articles extends Component {
           <div className="row justify-content-start">
             <div className="col-sm align-self-start">
               {articles.map(article => {
-                if (article.belongs_to.title.toLowerCase() === topic)
+                if (article.belongs_to.title.toLowerCase() === topic) {
+                  articleCount++;
                   return (
                     <div key={article._id} className="articleListItem">
                       <Link
@@ -53,7 +55,9 @@ class Articles extends Component {
                       <br />
                     </div>
                   );
+                }
               })}
+              {articleCount === 0 && <Redirect push to="/error" />}
             </div>
           </div>
         </div>
