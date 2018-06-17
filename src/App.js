@@ -11,8 +11,8 @@ import ErrorPage from './components/ErrorPage';
 class App extends Component {
   state = {
     user: {
-      _id: '5af568397e27165f2c6c2020',
-      username: 'jessjelly'
+      _id: '5af567b714f4d35e8b4d5c84',
+      username: 'tickle122'
     }
   };
 
