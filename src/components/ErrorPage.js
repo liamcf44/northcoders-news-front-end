@@ -6,7 +6,7 @@ function ErrorPage() {
       <div className="row">
         <div className="col" />
         <div className="col-7">
-          <h2>404 Error - Page Note Found</h2>
+          <h2>404 Error - Page Not Found</h2>
           <br />
           <br />
           <h4>There seems to be an error, please try again...</h4>
