@@ -11,8 +11,8 @@ import ErrorPage from './components/ErrorPage';
 class App extends Component {
   state = {
     user: {
-      _id: '5af567b714f4d35e8b4d5c84',
-      username: 'tickle122'
+      _id: '5b277d673d3fae7d982d2d06',
+      username: 'jessjelly'
     }
   };
 
@@ -42,7 +42,6 @@ class App extends Component {
           />
           <Route path="/*" component={ErrorPage} />
         </Switch>
-        <Route exact path="/error" component={ErrorPage} />
       </div>
     );
   }

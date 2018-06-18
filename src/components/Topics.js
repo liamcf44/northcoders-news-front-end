@@ -25,14 +25,21 @@ class Articles extends Component {
     let articleCount = 0;
 
     if (!articles) {
-      return <p />;
+      return (
+        <div className="container-fluid">
+          <div className="row justify-content-center">
+            <i className="fas fa-spinner fa-3x" />
+          </div>
+        </div>
+      );
     } else {
       return (
         <div className="container-fluid">
           <div className="row justify-content-center">
-            <h3>{topic.toUpperCase()} ARTICLES</h3>
-            <br />
+            <h3 id="subTitle">{topic.toUpperCase()} ARTICLES</h3>
           </div>
+          <br />
+          <br />
           <div className="row justify-content-start">
             <div className="col-sm align-self-start">
               {articles.map(article => {

@@ -2,3 +2,36 @@ body {
   margin: 0;
   padding: 0;
 }
+
+#subTitle {
+  text-decoration: underline;
+  color: maroon;
+}
+
+.articleListItem * {
+  color: rgb(83, 88, 94);
+  text-decoration: none;
+}
+
+.articleListItem *:hover {
+  color: maroon;
+  text-decoration: underline;
+}
+
+#button:hover {
+  color: maroon;
+  background-color: whitesmoke;
+}
+
+#NCNews {
+  color: red;
+}
+
+i {
+  transition: all 0.2s ease-in-out;
+}
+
+i:hover {
+  color: maroon;
+  transform: scale(1.1);
+}

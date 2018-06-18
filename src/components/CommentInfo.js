@@ -58,6 +58,9 @@ class CommentInfo extends Component {
             onChange={handleInput.bind(this)}
           />
           <button
+            id="button"
+            type="button"
+            className="btn btn-dark"
             onClick={() =>
               this.handleAddComment(
                 this.state.commentBody,
@@ -123,6 +126,9 @@ class CommentInfo extends Component {
                 {comment.created_by._id === userDetails._id && (
                   <div className="row">
                     <button
+                      id="button"
+                      type="button"
+                      className="btn btn-dark"
                       onClick={() => this.handleDeleteComment(comment._id)}
                     >
                       Delete Comment

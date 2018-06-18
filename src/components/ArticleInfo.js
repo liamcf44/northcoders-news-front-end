@@ -36,7 +36,14 @@ class ArticleInfo extends Component {
   render() {
     const { selectedArticle } = this.state;
     const { userDetails } = this.props;
-    if (!selectedArticle._id) return <p />;
+    if (!selectedArticle.created_by)
+      return (
+        <div className="container-fluid">
+          <div className="row justify-content-center">
+            <i className="fas fa-spinner fa-3x" />
+          </div>
+        </div>
+      );
     else {
       return (
         <div className="container-fluid">

@@ -27,7 +27,7 @@ class AddArticle extends Component {
     return (
       <div className="container-fluid">
         <div className="row justify-content-center">
-          <h3>Add an Article!</h3>
+          <h3 id="subTitle">Add an Article!</h3>
           <br />
         </div>
         <div className="row justify-content-start">
@@ -87,6 +87,7 @@ class AddArticle extends Component {
                 </select>
               </div>
               <button
+                id="button"
                 type="submit"
                 className="btn btn-dark"
                 onClick={e =>

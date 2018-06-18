@@ -26,7 +26,9 @@ class Header extends Component {
       return (
         <div className="container-fluid">
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark text-white">
-            <a className="navbar-brand">NC-News</a>
+            <a className="navbar-brand" id="NCNews">
+              NC-News |
+            </a>
             <button
               className="navbar-toggler"
               type="button"
@@ -48,6 +50,7 @@ class Header extends Component {
                     Home <span className="sr-only">(current)</span>
                   </NavLink>
                 </li>
+
                 {topics.map(topic => {
                   return (
                     <li key={topic.slug} className="nav-item">
@@ -62,7 +65,11 @@ class Header extends Component {
                 })}
               </ul>
               <Link to="/addArticle">
-                <button type="button" className="btn btn-outline-light btn-lg">
+                <button
+                  type="button"
+                  className="btn btn-outline-light btn-lg"
+                  id="button"
+                >
                   Add an Article
                 </button>
               </Link>
