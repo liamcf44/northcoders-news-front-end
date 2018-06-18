@@ -46,19 +46,30 @@ class Articles extends Component {
                 if (article.belongs_to.title.toLowerCase() === topic) {
                   articleCount++;
                   return (
-                    <div key={article._id} className="articleListItem">
-                      <Link
-                        to={`${pathname}/${article._id}`}
-                        id={article._id}
-                        name="selectedArticle"
+                    <div>
+                      <div
+                        className="row"
+                        key={article._id}
+                        id="articleListItem"
                       >
-                        {article.title}
-                      </Link>
-                      <br />
-                      <a id={article.created_by.username} name="selectedUser">
-                        created by: {article.created_by.username}
-                      </a>
-                      <br />
+                        <div className="col-sm">
+                          <Link
+                            to={`${pathname}/${article._id}`}
+                            id={article._id}
+                            name="selectedArticle"
+                          >
+                            {article.title}
+                          </Link>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-sm">
+                          <span>created by: </span>{' '}
+                          <span className="font-weight-bold">
+                            {article.created_by.username}
+                          </span>
+                        </div>
+                      </div>
                       <br />
                     </div>
                   );

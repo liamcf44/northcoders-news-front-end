@@ -8,12 +8,12 @@ body {
   color: maroon;
 }
 
-.articleListItem * {
+#articleListItem * {
   color: rgb(83, 88, 94);
   text-decoration: none;
 }
 
-.articleListItem *:hover {
+#articleListItem *:hover {
   color: maroon;
   text-decoration: underline;
 }

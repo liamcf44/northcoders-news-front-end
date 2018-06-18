@@ -127,18 +127,22 @@ class CommentInfo extends Component {
                 </div>
                 <br />
                 {comment.created_by._id === userDetails._id && (
-                  <div className="row">
-                    <button
-                      id="button"
-                      type="button"
-                      className="btn btn-dark"
-                      onClick={() => this.handleDeleteComment(comment._id)}
-                    >
-                      Delete Comment
-                    </button>
+                  <div>
+                    <div className="row">
+                      <button
+                        id="button"
+                        type="button"
+                        className="btn btn-dark"
+                        onClick={() => this.handleDeleteComment(comment._id)}
+                      >
+                        Delete Comment
+                      </button>
+                    </div>
+                    <div>
+                      <br />
+                    </div>
                   </div>
                 )}
-                <br />
               </div>
             );
           })}
