@@ -84,14 +84,16 @@ class CommentInfo extends Component {
                 <br />
                 <div className="row">
                   <div className="col-sm-3">
-                    <h6>{comment.created_by.username}:</h6>
+                    <h6 className="font-weight-bold">
+                      {comment.created_by.username}:
+                    </h6>
                   </div>
                   <div className="col-sm-9">
                     <span>{comment.body}</span>
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-sm">
+                <div className="row row justify-content-end">
+                  <div className="col-sm-6 align-self-end">
                     <span>
                       Created at:{' '}
                       {moment(comment.created_at).format(
@@ -100,11 +102,12 @@ class CommentInfo extends Component {
                     </span>
                   </div>
                 </div>
-                <div className="row ">
-                  <div className="col-sm-8">
+                <br />
+                <div className="row justify-content-center">
+                  <div className="col-sm-4 align-self-center">
                     <span>Votes: {comment.votes}</span>
                   </div>
-                  <div className="col-sm-4">
+                  <div className="col-sm-8">
                     <span>
                       <i
                         className="far fa-arrow-alt-circle-up fa-2x"

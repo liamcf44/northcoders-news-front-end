@@ -55,15 +55,22 @@ class ArticleInfo extends Component {
 
               <br />
               <div className="row justify-content-center">
-                <h5>Created by: {selectedArticle.created_by.username}</h5>
+                <span>
+                  <h5>Created by: </h5>
+                </span>
+                <span>
+                  <h5 className="font-weight-bold">
+                    {selectedArticle.created_by.username}
+                  </h5>
+                </span>
               </div>
               <br />
               <br />
               <div className="row">
-                <div className="col-sm-3 align-self-center">
+                <div className="col-sm-2 align-self-center">
                   <span>Votes: {selectedArticle.votes}</span>
                 </div>
-                <div className="col-sm-9">
+                <div className="col-sm-10 align-self-start">
                   <span>
                     <i
                       className="far fa-arrow-alt-circle-up fa-2x"
