@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'https://github.com/liamcf44/northcoders-news-back-end/api';
+const url = 'https://liamcf44-ncnews-backend.herokuapp.com/api';
 
 export const fetchArticleData = async () => {
   let { data } = await axios
