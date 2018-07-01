@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import moment from 'moment';
-import handleInput from './HandleInput';
+import handleInput from '../utils/HandleInput';
 
 class CommentInfo extends Component {
   state = {
@@ -18,8 +18,11 @@ class CommentInfo extends Component {
     } catch (e) {
       commentData = [];
     }
+    const sortedArticles = commentData.sort((a, b) => {
+      return b.created_at - a.created_at;
+    });
     this.setState({
-      articleComments: commentData
+      articleComments: sortedArticles
     });
   };
 
@@ -40,10 +43,6 @@ class CommentInfo extends Component {
     const { articleComments } = this.state;
     const { userDetails, articleID } = this.props;
 
-    articleComments.sort((a, b) => {
-      return b.created_at - a.created_at;
-    });
-
     return (
       <div className="container-fluid mh-40">
         <div className="row justify-content-center">
@@ -56,6 +55,7 @@ class CommentInfo extends Component {
             placeholder="Add a comment here"
             name="commentBody"
             onChange={handleInput.bind(this)}
+            value={this.state.commentBody}
           />
           <button
             id="button"
@@ -203,7 +203,8 @@ class CommentInfo extends Component {
         votes: newCommentDoc.votes
       });
       this.setState({
-        articleComments
+        articleComments,
+        commentBody: ''
       });
     } catch (err) {
       this.props.history.push(`/error`);

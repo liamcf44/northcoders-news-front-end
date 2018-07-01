@@ -1,5 +1,7 @@
 ## \***\*\*\*\*\***\*\***\*\*\*\*\*** NORTHCODERS NEWS Front End \***\*\*\*\*\***\*\***\*\*\*\*\***
 
+[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
+
 A portfolio project for Northcoders in which a React front end is built, which interacts with the MongoDB back end build earlier. This front end displays a news site which allows you to choose articles by topic, these and the respective comments can then be voted on. You can also add a new article and a a new comment to an article.
 
 This front end is then hosted on Heroku.
@@ -8,13 +10,11 @@ This front end is then hosted on Heroku.
 
 You will need to run the following to recreate this project:
 
-Fork and clone the repository;
+Fork and clone the repository [here](https://github.com/liamcf44/FE-FT-NC-News.git).
 
-`https://github.com/liamcf44/FE-FT-NC-News.git`
+You need to install node, instructions for this can be found at [nodejs.org](https://nodejs.org/en/download/package-manager/).
 
-You need to install node, instructions for this can be found at `https://nodejs.org/en/download/package-manager/`.
-
-You will also need to install React, instructions for this can be found at `https://reactjs.org/docs/try-react.html`
+You will also need to install React, instructions for this can be found at [reactjs.org](https://reactjs.org/docs/try-react.html).
 
 Running `npm install` will then install the dependencies needed. These are listed below.
 
@@ -47,13 +47,13 @@ This is the page that is displayed if an error occurs
 This API is hosted on Heroku using API calls to the back end which is also hosted on Heroku. You can do the same by setting up an account at 'heroku.com'
 
 The frontend Heroku app can be found at the following Heroku Link,
-`https://pacific-hamlet-50062.herokuapp.com/` and it's git link is `https://git.heroku.com/pacific-hamlet-50062.git`
+https://pacific-hamlet-50062.herokuapp.com/ and it's git link is https://git.heroku.com/pacific-hamlet-50062.git
 
-This backend API can be found at the following Heroku link, `https://liamcf44-northcoders-news.herokuapp.com/` and it's git link is `https://git.heroku.com/liamcf44-northcoders-news.git`.
+This backend API can be found at the following Heroku link, https://liamcf44-northcoders-news.herokuapp.com/ and it's git link is https://git.heroku.com/liamcf44-northcoders-news.git.
 
 ### BOOTSTRAP
 
-The Bootstrap framework was used to structure the layout of the website. More info can be found at `https://getbootstrap.com/docs/3.3/getting-started/`.
+The Bootstrap framework was used to structure the layout of the website. More info can be found at https://getbootstrap.com/docs/3.3/getting-started/.
 
 ### BUILT WITH
 

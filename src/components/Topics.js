@@ -46,7 +46,7 @@ class Articles extends Component {
                 if (article.belongs_to.title.toLowerCase() === topic) {
                   articleCount++;
                   return (
-                    <div>
+                    <div key={article._id}>
                       <div
                         className="row"
                         key={article._id}
@@ -62,6 +62,7 @@ class Articles extends Component {
                           </Link>
                         </div>
                       </div>
+
                       <div className="row">
                         <div className="col-sm">
                           <span>created by: </span>{' '}
@@ -70,7 +71,6 @@ class Articles extends Component {
                           </span>
                         </div>
                       </div>
-                      <br />
                     </div>
                   );
                 }

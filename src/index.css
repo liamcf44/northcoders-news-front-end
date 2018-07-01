@@ -18,6 +18,10 @@ body {
   text-decoration: underline;
 }
 
+#logoButton {
+  background-color: white;
+}
+
 #button:hover {
   color: maroon;
   background-color: whitesmoke;
@@ -34,4 +38,9 @@ i {
 i:hover {
   color: maroon;
   transform: scale(1.1);
+}
+
+#addArticleForm {
+  margin: 0 auto;
+  width: 70%;
 }
