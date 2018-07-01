@@ -1,7 +1,5 @@
 ## \***\*\*\*\*\***\*\***\*\*\*\*\*** NORTHCODERS NEWS Front End \***\*\*\*\*\***\*\***\*\*\*\*\***
 
-[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
-
 A portfolio project for Northcoders in which a React front end is built, which interacts with the MongoDB back end build earlier. This front end displays a news site which allows you to choose articles by topic, these and the respective comments can then be voted on. You can also add a new article and a a new comment to an article.
 
 This front end is then hosted on Heroku.
@@ -10,7 +8,7 @@ This front end is then hosted on Heroku.
 
 You will need to run the following to recreate this project:
 
-Fork and clone the repository [here](https://github.com/liamcf44/FE-FT-NC-News.git).
+Fork and clone the repository [here](https://github.com/liamcf44/northcoders-news-front-end.git).
 
 You need to install node, instructions for this can be found at [nodejs.org](https://nodejs.org/en/download/package-manager/).
 
